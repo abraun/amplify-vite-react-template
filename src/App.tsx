@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import Todo from "./components/Todo";
+import TodoList from "./components/Todo";
 import BookList from "./components/BookList";
 
 const client = generateClient<Schema>();
@@ -42,7 +42,7 @@ function App() {
   return (
     <main>
       <BookList books={books} onCreate={createBook} onDelete={deleteBook}/>
-      <Todo user={user} todos={todos} createTodo={createTodo} deleteTodo={deleteTodo}/>
+      <TodoList user={user} todos={todos} createTodo={createTodo} deleteTodo={deleteTodo}/>
       
       
       

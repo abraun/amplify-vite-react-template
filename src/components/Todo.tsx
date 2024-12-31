@@ -1,3 +1,5 @@
+import { Todo } from '../types'
+
 interface TodoProps {
     user: any;
     todos: any;
@@ -5,7 +7,7 @@ interface TodoProps {
     deleteTodo: any;
 }
 
-const Todo: React.FC<TodoProps> = ({user, todos, createTodo, deleteTodo}) => {
+const TodoList: React.FC<TodoProps> = ({user, todos, createTodo, deleteTodo}) => {
   return (
     <>
         <h1>{user?.signInDetails?.loginId}'s todos</h1>
@@ -22,4 +24,4 @@ const Todo: React.FC<TodoProps> = ({user, todos, createTodo, deleteTodo}) => {
   )
 }
 
-export default Todo
+export default TodoList
