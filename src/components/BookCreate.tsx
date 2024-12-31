@@ -1,7 +1,10 @@
 import { useState } from "react"
 
+interface BookCreateProps {
+    onCreate: (title: string) => void
+}
 
-function BookCreate({onCreate}) {
+const BookCreate: React.FC<BookCreateProps> = ({onCreate}) => {
     const [title, setTitle] = useState("")
 
     const handleChange = (e) => {

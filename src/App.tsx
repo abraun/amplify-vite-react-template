@@ -30,7 +30,7 @@ function App() {
     client.models.Todo.delete({ id });
   }
 
-  function createBook(title) {
+  function createBook(title: string) {
     const id = Math.floor(Math.random() * 1000);
     client.models.Book.create({ title, id });
   }
