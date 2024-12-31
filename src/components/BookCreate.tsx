@@ -11,7 +11,8 @@ const BookCreate: React.FC<BookCreateProps> = ({onCreate}) => {
         setTitle(e.target.value)
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    //TODO: need to learn how to handle the right types for events
+    const handleSubmit = (e: any) => {
         e.preventDefault()
         console.log("Created book: ", title)
         onCreate(title)
