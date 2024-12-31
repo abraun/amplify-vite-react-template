@@ -1,4 +1,3 @@
-import { Todo } from '../types'
 
 interface TodoProps {
     user: any;
@@ -13,7 +12,7 @@ const TodoList: React.FC<TodoProps> = ({user, todos, createTodo, deleteTodo}) =>
         <h1>{user?.signInDetails?.loginId}'s todos</h1>
         <button onClick={createTodo}>+ new</button>
         <ul>
-        {todos.map((todo: Todo) => (
+        {todos.map((todo: any) => (
             <li 
             onClick={() => deleteTodo(todo.id)}
             key={todo.id}>{todo.content} {todo.isDone} </li>

@@ -1,8 +1,7 @@
 import BookCreate from "./BookCreate"
-import { Book } from "../types"
 
 interface BookListProps {
-    books: Book[];
+    books: [];
     onCreate: (title: string) => void;
     onDelete: (id: number) => void;
 }
@@ -16,7 +15,7 @@ const BookList: React.FC<BookListProps> = ({books, onCreate, onDelete}) => {
 
     return (
         <>
-        {books.map((book: Book) => (
+        {books.map((book: any) => (
             <div>
                 <h3>{book.title}</h3><button onClick={() => onDelete(book.id)}>Delete</button>
             </div>
