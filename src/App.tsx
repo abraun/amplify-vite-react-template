@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import Todo from "./components/Todo";
+import BookList from "./components/BookList";
 
 const client = generateClient<Schema>();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [books, setBooks] = useState<Array<Schema["Book"]["type"]>>([]);
 
   const { user, signOut } = useAuthenticator();
 
@@ -14,27 +17,35 @@ function App() {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
+    client.models.Book.observeQuery().subscribe({
+      next: (data) => setBooks([...data.items]),
+    });
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+    client.models.Todo.create({ content: window.prompt("Todo content"), isDone: false });
   }
 
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id });
   }
 
+  function createBook(title) {
+    const id = Math.floor(Math.random() * 1000);
+    client.models.Book.create({ title, id });
+  }
+
+  function deleteBook(id: string) {
+    client.models.Book.delete({ id });
+  }
+
   return (
     <main>
-      <h1>{user?.signInDetails?.loginId}'s todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li 
-            onClick={() => deleteTodo(todo.id)}
-            key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
+      <BookList books={books} onCreate={createBook} onDelete={deleteBook}/>
+      <Todo user={user} todos={todos} createTodo={createTodo} deleteTodo={deleteTodo}/>
+      
+      
+      
       <div>
         🥳 App successfully hosted. Try creating a new todo.
         <br />
