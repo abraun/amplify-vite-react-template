@@ -1,7 +1,7 @@
 import BookCreate from "./BookCreate"
 
 interface BookListProps {
-    books: [];
+    books: any;
     onCreate: (title: string) => void;
     onDelete: (id: number) => void;
 }

@@ -35,7 +35,7 @@ function App() {
     client.models.Book.create({ title, id });
   }
 
-  function deleteBook(id: string) {
+  function deleteBook(id: number) {
     client.models.Book.delete({ id });
   }
 
